@@ -40,7 +40,7 @@ namespace VMS.TPS
             foreach (Course c in context.Patient.Courses)
                 foreach (PlanSetup p in c.PlanSetups)
                 {
-                    maListe += "Course : " + c.Id + " Plan : " + p.Id;
+                    maListe += "Course : " + c.Id + " Plan : " + p.Id + "\n";
 
                 }
             MessageBox.Show(maListe);
