@@ -81,6 +81,7 @@ namespace VMS.TPS
 
             #region MLC mean gap
             Beam b = context.PlanSetup.Beams.FirstOrDefault();
+            MessageBox.Show("Processiong " + b.Id);
             double meang = 0;
             double totalMeanLeafGap = 0;
             int openLeaves = 0;
