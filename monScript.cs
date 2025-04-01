@@ -25,7 +25,7 @@ namespace VMS.TPS
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public void Execute(VMS.TPS.Common.Model.API.ScriptContext context /*, System.Windows.Window window, ScriptEnvironment environment*/)
+        public void Execute(VMS.TPS.Common.Model.API.ScriptContext context /*, System.Windows.Window window, ScriptEnvironment environment*/) //
         {
             #region Informations basiques
             MessageBox.Show("Nom du plan ouvert " + context.PlanSetup.Id);
