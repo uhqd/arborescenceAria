@@ -8,14 +8,12 @@ using System.Runtime.CompilerServices;
 using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
 
-// TODO: Replace the following version attributes by creating AssemblyInfo.cs. You can do this in the properties of the Visual Studio project.
 [assembly: AssemblyVersion("1.0.0.1")]
 [assembly: AssemblyFileVersion("1.0.0.1")]
 [assembly: AssemblyInformationalVersion("1.0")]
 
 // TODO: Uncomment the following line if the script requires write access.
 // [assembly: ESAPIScript(IsWriteable = true)]
-// ARBO
 namespace VMS.TPS
 {
     public class Script
@@ -27,14 +25,14 @@ namespace VMS.TPS
         [MethodImpl(MethodImplOptions.NoInlining)]
         public void Execute(VMS.TPS.Common.Model.API.ScriptContext context /*, System.Windows.Window window, ScriptEnvironment environment*/) //
         {
-            #region Informations basiques
-            MessageBox.Show("Nom du plan ouvert " + context.PlanSetup.Id);
-            MessageBox.Show("Nom du course ouvert " + context.Course.Id);
-            MessageBox.Show("Nom du patient " + context.Patient.Name);
-            MessageBox.Show("Sexe " + context.Patient.Sex);
+            #region Basic Info
+            MessageBox.Show("Open plan " + context.PlanSetup.Id);
+            MessageBox.Show("Open course " + context.Course.Id);
+            MessageBox.Show("Patient name " + context.Patient.Name);
+            MessageBox.Show("Sex " + context.Patient.Sex);
             #endregion
 
-            #region Liste des plans/courses
+            #region List of plans/courses
 
             string maListe = string.Empty;
             foreach (Course c in context.Patient.Courses)
@@ -47,14 +45,14 @@ namespace VMS.TPS
             #endregion
 
             #region N fractions
-            MessageBox.Show("Nombre de fractions " + context.PlanSetup.NumberOfFractions.ToString());
+            MessageBox.Show("N fractions " + context.PlanSetup.NumberOfFractions.ToString());
             #endregion
 
-            #region courbe HU
-            MessageBox.Show("Courbe HU " + context.Image.Series.ImagingDeviceId);
+            #region  HU curve
+            MessageBox.Show("Curve HU " + context.Image.Series.ImagingDeviceId);
             #endregion
 
-            #region structures non vides
+            #region non empty structures
             int nStructures = context.StructureSet.Structures.Count();
             int nNonEmpty = 0;
             foreach (Structure s in context.StructureSet.Structures)
@@ -63,17 +61,17 @@ namespace VMS.TPS
                     nNonEmpty++;
 
             }
-            MessageBox.Show(nStructures.ToString() + " structures dont " + nNonEmpty.ToString() + " non vides");
+            MessageBox.Show(nStructures.ToString() + " structures and " + nNonEmpty.ToString() + " are non empty");
             #endregion
 
-            #region table de tolérance
+            #region table of tolérance
             string tolTable = "";
             foreach (Beam f in context.PlanSetup.Beams)
             {
                 if (!f.IsSetupField)
                 {
                     tolTable = f.ToleranceTableLabel.ToUpper();
-                    MessageBox.Show("table de tolérance de " + f.Id + " : " + tolTable);
+                    MessageBox.Show("table of tolérance of " + f.Id + " : " + tolTable);
                     break;
                 }
             }
@@ -81,7 +79,7 @@ namespace VMS.TPS
 
             #region MLC mean gap
             Beam b = context.PlanSetup.Beams.FirstOrDefault();
-            MessageBox.Show("Processiong " + b.Id);
+            MessageBox.Show("Processing " + b.Id);
             double meang = 0;
             double totalMeanLeafGap = 0;
             int openLeaves = 0;
