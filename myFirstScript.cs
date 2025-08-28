@@ -64,14 +64,14 @@ namespace VMS.TPS
             MessageBox.Show(nStructures.ToString() + " structures and " + nNonEmpty.ToString() + " are non empty");
             #endregion
 
-            #region table of tolérance
+            #region table of tolerance
             string tolTable = "";
             foreach (Beam f in context.PlanSetup.Beams)
             {
                 if (!f.IsSetupField)
                 {
                     tolTable = f.ToleranceTableLabel.ToUpper();
-                    MessageBox.Show("table of tolérance of " + f.Id + " : " + tolTable);
+                    MessageBox.Show("table of tolerance of " + f.Id + " : " + tolTable);
                     break;
                 }
             }
